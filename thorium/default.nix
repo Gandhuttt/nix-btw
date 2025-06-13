@@ -1,7 +1,7 @@
 { pkgs ? import <nixpkgs> { system = builtins.currentSystem; }, appimageTools ? pkgs.appimageTools, fetchurl ? pkgs.fetchurl }:
 
 let
-  pname = "thorium-core";
+  pname = "thorium";
   version = "130.0.6723.174";
 
   src = fetchurl {
@@ -15,8 +15,8 @@ let
 
   desktopItem = pkgs.makeDesktopItem {
     name = "thorium";
-    exec = "${app}/bin/thorium-core --ozone-platform=wayland";
-    icon = "thorium"; # Optional: replace with your custom icon path or system icon
+    exec = "${app}/bin/thorium --ozone-platform=wayland";
+    icon = "thorium";
     desktopName = "Thorium Browser";
     comment = "Privacy-focused Chromium fork";
     categories = [ "Network" "WebBrowser" ];
