@@ -21,7 +21,7 @@ let
     comment = "Privacy-focused Chromium fork";
     categories = [ "Network" "WebBrowser" ];
     mimeTypes = ["text/html" "x-scheme-handler/http" "x-scheme-handler/https"]; 
-    startupWMClass = "Thorium"; # <--- THIS is important
+    startupWMClass = "thorium"; # <--- THIS is important
   };
 
 in
