@@ -17,12 +17,13 @@ let
     name = "thorium";
     exec = "${app}/bin/thorium-core --ozone-platform=wayland %U";
     icon = "thorium";
-    desktopName = "Thorium";
+    desktopName = "Thorium Browser";
     comment = "Privacy-focused Chromium fork";
     categories = [ "Network" "WebBrowser" ];
     mimeType = "text/html;x-scheme-handler/http;x-scheme-handler/https;";
+    startupWMClass = "Thorium"; # <--- THIS is important
   };
-
+  
 in
 
 pkgs.symlinkJoin {
