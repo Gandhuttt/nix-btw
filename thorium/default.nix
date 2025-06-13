@@ -15,7 +15,7 @@ let
 
   desktopItem = pkgs.makeDesktopItem {
     name = "thorium";
-    exec = "${app}/bin/thorium --ozone-platform=wayland";
+    exec = "${app}/bin/thorium-core --ozone-platform=wayland";
     icon = "thorium"; # Optional: replace with your custom icon path or system icon
     desktopName = "Thorium Browser";
     comment = "Privacy-focused Chromium fork";
