@@ -15,12 +15,14 @@ let
 
   desktopItem = pkgs.makeDesktopItem {
     name = "thorium";
-    exec = "${app}/bin/thorium --ozone-platform=wayland";
-    icon = "${./thorium.png}";
-    desktopName = "Thorium Browser";
+    exec = "${app}/bin/thorium-core --ozone-platform=wayland %U";
+    icon = "thorium";
+    desktopName = "Thorium";
     comment = "Privacy-focused Chromium fork";
     categories = [ "Network" "WebBrowser" ];
+    mimeType = "text/html;x-scheme-handler/http;x-scheme-handler/https;";
   };
+
 in
 
 pkgs.symlinkJoin {
