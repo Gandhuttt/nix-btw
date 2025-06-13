@@ -17,10 +17,10 @@ let
     name = "thorium";
     exec = "${app}/bin/thorium-core --ozone-platform=wayland %U";
     icon = "thorium";
-    desktopName = "Thorium Browser";
+    desktopName = "Thorium";
     comment = "Privacy-focused Chromium fork";
     categories = [ "Network" "WebBrowser" ];
-    mimeTypes = "text/html;x-scheme-handler/http;x-scheme-handler/https;";
+    mimeTypes = ["text/html" "x-scheme-handler/http" "x-scheme-handler/https"]; 
     startupWMClass = "Thorium"; # <--- THIS is important
   };
 
