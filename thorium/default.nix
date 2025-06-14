@@ -1,3 +1,3 @@
-self: super:
+# self: super:
 
-super.callPackage ./thorium.nix { }
+# super.callPackage ./thorium.nix { }
