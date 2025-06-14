@@ -1,5 +1,6 @@
 {
   lib,
+  libgbm,
   stdenv,
   fetchurl,
   wrapGAppsHook,
@@ -57,6 +58,7 @@ stdenv.mkDerivation rec {
   ];
 
   buildInputs = [
+    libgbm
     alsa-lib
     at-spi2-atk
     at-spi2-core

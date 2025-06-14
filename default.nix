@@ -3,6 +3,7 @@
   
   thorium = with pkgs; with pkgs.xorg; import ./thorium/thorium.nix { inherit 
     lib 
+    libgbm
     stdenv 
     fetchurl 
     wrapGAppsHook 
