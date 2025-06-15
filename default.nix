@@ -54,6 +54,6 @@ in
   #   makeWrapper
   # ;};
 
-  
-  # xpad = callPackage ./xpad/xpad.nix;
+
+  xpad = import ./xpad/xpad.nix { inherit callPackage; };
 }
