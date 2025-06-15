@@ -55,5 +55,5 @@ in
   # ;};
 
 
-  xpad = import ./xpad/xpad.nix { inherit callPackage; };
+  xpad = import ./xpad/xpad.nix;
 }
