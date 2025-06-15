@@ -46,5 +46,7 @@
     xdg-utils 
     libxkbcommon 
     makeWrapper
-  ; };
+  };
+
+  xpad = with pkgs; import ./xpad/xpad.nix { inherit lib stdenv fetchFromGitHub kernel };
 }
