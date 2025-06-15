@@ -5,7 +5,8 @@ let
 in
 {
   
-  thorium = callPackage ./thorium/thorium.nix;
+  thorium = import ./thorium { inherit callPackage; };
+  # thorium = callPackage ./thorium/thorium.nix;
   # thorium = with pkgs; with pkgs.xorg; import ./thorium/thorium.nix { inherit 
   #   lib 
   #   libgbm
@@ -53,5 +54,6 @@ in
   #   makeWrapper
   # ;};
 
-  xpad = callPackage ./xpad/xpad.nix;
+  
+  # xpad = callPackage ./xpad/xpad.nix;
 }
