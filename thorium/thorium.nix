@@ -1,4 +1,5 @@
 {
+  libgbm,
   lib,
   stdenv,
   fetchurl,
@@ -57,6 +58,7 @@ stdenv.mkDerivation rec {
   ];
 
   buildInputs = [
+    libgbm
     alsa-lib
     at-spi2-atk
     at-spi2-core
