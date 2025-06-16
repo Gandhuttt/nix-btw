@@ -120,8 +120,8 @@ stdenv.mkDerivation rec {
       makeWrapper "$out/opt/chromium.org/thorium/chromedriver" "$out/bin/chromedriver" \
         --prefix LD_LIBRARY_PATH : "${lib.makeLibraryPath buildInputs}"
     fi
-    if [ -f $out/opt/chromium.org/thorium/thorium-shell ]; then
-      makeWrapper "$out/opt/chromium.org/thorium/thorium-shell" "$out/bin/thorium-shell" \
+    if [ -f $out/opt/chromium.org/thorium/thorium_shell ]; then
+      makeWrapper "$out/opt/chromium.org/thorium/thorium_shell" "$out/bin/thorium-shell" \
         --prefix LD_LIBRARY_PATH : "${lib.makeLibraryPath buildInputs}" \
         --add-flags "--no-sandbox"
     fi
@@ -142,17 +142,17 @@ stdenv.mkDerivation rec {
       done
     fi
     
-if [ -d ./usr/share/icons ]; then
-  mkdir -p "$out/share/icons"
-  cp -r ./usr/share/icons/* "$out/share/icons/" || true
-else
-  for i in 16 24 32 48 64 128 256; do
-    if [ -f "$out/opt/chromium.org/thorium/product_logo_''${i}.png" ]; then
-      mkdir -p "$out/share/icons/hicolor/''${i}x''${i}/apps"
-      cp "$out/opt/chromium.org/thorium/product_logo_''${i}.png" "$out/share/icons/hicolor/''${i}x''${i}/apps/thorium.png"
+    if [ -d ./usr/share/icons ]; then
+      mkdir -p "$out/share/icons"
+      cp -r ./usr/share/icons/* "$out/share/icons/" || true
+    else
+      for i in 16 24 32 48 64 128 256; do
+        if [ -f "$out/opt/chromium.org/thorium/product_logo_''${i}.png" ]; then
+          mkdir -p "$out/share/icons/hicolor/''${i}x''${i}/apps"
+          cp "$out/opt/chromium.org/thorium/product_logo_''${i}.png" "$out/share/icons/hicolor/''${i}x''${i}/apps/thorium.png"
+        fi
+      done
     fi
-  done
-fi
 
     runHook postInstall
   '';
