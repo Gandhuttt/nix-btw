@@ -1,4 +1,5 @@
 {
+  libglvnd,
   libgbm,
   lib,
   stdenv,
@@ -58,6 +59,7 @@ stdenv.mkDerivation rec {
   ];
 
   buildInputs = [
+    libglvnd
     libgbm
     alsa-lib
     at-spi2-atk
@@ -136,6 +138,7 @@ stdenv.mkDerivation rec {
             --replace "/opt/chromium.org/thorium/" "$out/opt/chromium.org/thorium/" \
             --replace "/opt/thorium/thorium" "$out/bin/thorium" \
             --replace "/opt/thorium/" "$out/opt/chromium.org/thorium/" \
+            --replace "Exec=/usr/bin/thorium-browser" "Exec=thorium" \
             --replace "Exec=/usr/bin/thorium-browser" "Exec=thorium" \
             --replace "Icon=thorium-browser" "Icon=thorium" 
         fi
