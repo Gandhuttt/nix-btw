@@ -136,8 +136,7 @@ stdenv.mkDerivation rec {
             --replace "/opt/chromium.org/thorium/" "$out/opt/chromium.org/thorium/" \
             --replace "/opt/thorium/thorium" "$out/bin/thorium" \
             --replace "/opt/thorium/" "$out/opt/chromium.org/thorium/" \
-            --replace "Exec=/usr/bin/thorium-browser" "Exec=thorium" \
-            --replace "StartupWMClass=thorium" "StartupWMClass=thorium-browser"
+            --replace "Exec=/usr/bin/thorium-browser" "Exec=thorium" 
         fi
       done
     fi
