@@ -43,7 +43,20 @@
   xdg-utils,
   libxkbcommon,
   makeWrapper,
+  makeDesktopItem,
 }:
+
+let
+  desktopItem = makeDesktopItem {
+    name = "thorium";
+    exec = "thorium %U";
+    icon = "thorium"; # or use a full path like: "${placeholder "out"}/opt/chromium.org/thorium/product_logo_256.png"
+    comment = "Chromium fork with various patches and optimizations";
+    desktopName = "Thorium Browser";
+    categories = [ "Network" "WebBrowser" ];
+    mimeTypes = [ "x-scheme-handler/http" "x-scheme-handler/https" ];
+  };
+in
 
 stdenv.mkDerivation rec {
   pname = "thorium";
@@ -101,7 +114,6 @@ stdenv.mkDerivation rec {
     dpkg-deb --fsys-tarfile $src | tar -x --no-same-permissions --no-same-owner
   '';
 
-  # No need to patch files that don't exist yet
   dontPatchELF = true;
 
   installPhase = ''
@@ -131,41 +143,14 @@ stdenv.mkDerivation rec {
         --add-flags "--no-sandbox"
     fi
 
-    if [ -d ./usr/share/applications ]; then
-      mkdir -p $out/share/applications
-      cp ./usr/share/applications/thorium*.desktop $out/share/applications/ || true
-      
-      for file in $out/share/applications/*.desktop; do
-        if [ -f "$file" ]; then
-          substituteInPlace $file \
-            --replace "/opt/chromium.org/thorium/thorium" "$out/bin/thorium" \
-            --replace "/opt/chromium.org/thorium/" "$out/opt/chromium.org/thorium/" \
-            --replace "/opt/thorium/thorium" "$out/bin/thorium" \
-            --replace "/opt/thorium/" "$out/opt/chromium.org/thorium/"
-        fi
-      done
-    fi
-
     if [ -d ./usr/share/icons ]; then
       mkdir -p $out/share/icons
       cp -r ./usr/share/icons/* $out/share/icons/ || true
     fi
 
-    # If no desktop file was found, create one
-    if [ ! -f $out/share/applications/thorium.desktop ] && [ -f $out/opt/chromium.org/thorium/product_logo_256.png ]; then
-      mkdir -p $out/share/applications
-      cat > $out/share/applications/thorium.desktop << EOF
-    [Desktop Entry]
-    Type=Application
-    Name=Thorium Browser
-    Exec=$out/bin/thorium %U
-    Icon=$out/opt/chromium.org/thorium/product_logo_256.png
-    Comment=Chromium fork with various patches and optimizations
-    Categories=Network;WebBrowser;
-    MimeType=x-scheme-handler/http;x-scheme-handler/https;
-    StartupNotify=true
-    EOF
-    fi
+    # Replace manual desktop file logic with makeDesktopItem
+    mkdir -p $out/share/applications
+    cp -r ${desktopItem}/share/applications/* $out/share/applications/
 
     runHook postInstall
   '';
