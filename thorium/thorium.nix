@@ -143,10 +143,11 @@ stdenv.mkDerivation rec {
         --add-flags "--no-sandbox"
     fi
 
-    if [ -d ./usr/share/icons ]; then
-      mkdir -p $out/share/icons
-      cp -r ./usr/share/icons/* $out/share/icons/ || true
-    fi
+    for size in 16 24 32 48 64 128 256; do
+      mkdir -p $out/share/icons/hicolor/''${size}x''${size}/apps
+      cp opt/chromium.org/thorium/product_logo_''${size}.png $out/share/icons/hicolor/''${size}x''${size}/apps/thorium.png || true
+    done
+
 
     # Replace manual desktop file logic with makeDesktopItem
     mkdir -p $out/share/applications
