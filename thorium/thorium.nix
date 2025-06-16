@@ -127,16 +127,17 @@ stdenv.mkDerivation rec {
     fi
     if [ -d ./usr/share/applications ]; then
       mkdir -p $out/share/applications
-      cp ./usr/share/applications/thorium*.desktop $out/share/applications/ || true
+      cp ./usr/share/applications/thorium-browser.desktop $out/share/applications/ || true
       
-      for file in $out/share/applications/*.desktop; do
+      for file in $out/share/applications/thorium-browser.desktop; do
         if [ -f "$file" ]; then
           substituteInPlace $file \
             --replace "/opt/chromium.org/thorium/thorium" "$out/bin/thorium" \
             --replace "/opt/chromium.org/thorium/" "$out/opt/chromium.org/thorium/" \
             --replace "/opt/thorium/thorium" "$out/bin/thorium" \
             --replace "/opt/thorium/" "$out/opt/chromium.org/thorium/" \
-            --replace "Exec=/usr/bin/thorium-browser" "Exec=thorium" 
+            --replace "Exec=/usr/bin/thorium-browser" "Exec=thorium" \
+            --replace "Icon=thorium-browser" "Icon=thorium" 
         fi
       done
     fi
